@@ -1190,6 +1190,14 @@ struct in_pktinfo {
 	struct in_addr ipi_addr;     /**< Header Destination address */
 };
 
+/** Retrieve the current known path MTU of the current socket. Returns an
+ *  integer. IP_MTU is valid only for getsockopt and can be employed only when
+ *  the socket has been connected.
+ */
+#define IP_MTU 14
+
+/** Set IPv4 multicast datagram network interface. */
+#define IP_MULTICAST_IF 32
 /** Set IPv4 multicast TTL value. */
 #define IP_MULTICAST_TTL 33
 /** Join IPv4 multicast group. */
@@ -1206,6 +1214,17 @@ struct ip_mreqn {
 	int            imr_ifindex;   /**< Network interface index */
 };
 
+/**
+ * @brief Struct used when setting a IPv4 multicast network interface.
+ */
+struct ip_mreq  {
+	struct in_addr imr_multiaddr;   /**< IP multicast group address */
+	struct in_addr imr_interface;   /**< IP address of local interface */
+};
+
+/** Clamp down the global port range for a given socket */
+#define IP_LOCAL_PORT_RANGE 51
+
 /** @} */
 
 /**
@@ -1216,6 +1235,9 @@ struct ip_mreqn {
 /** Set the unicast hop limit for the socket. */
 #define IPV6_UNICAST_HOPS	16
 
+/** Set multicast output network interface index for the socket. */
+#define IPV6_MULTICAST_IF       17
+
 /** Set the multicast hop limit for the socket. */
 #define IPV6_MULTICAST_HOPS 18
 
@@ -1224,6 +1246,12 @@ struct ip_mreqn {
 
 /** Leave IPv6 multicast group. */
 #define IPV6_DROP_MEMBERSHIP 21
+
+/** Join IPv6 multicast group. */
+#define IPV6_JOIN_GROUP IPV6_ADD_MEMBERSHIP
+
+/** Leave IPv6 multicast group. */
+#define IPV6_LEAVE_GROUP IPV6_DROP_MEMBERSHIP
 
 /**
  * @brief Struct used when joining or leaving a IPv6 multicast group.
@@ -1235,6 +1263,13 @@ struct ipv6_mreq {
 	/** Network interface index of the local IPv6 address */
 	int ipv6mr_ifindex;
 };
+
+/** For getsockopt(), retrieve the current known IPv6 path MTU of the given socket.
+ * Valid only when the socket has been connected.
+ * For setsockopt(), set the MTU to be used for the socket. The MTU is limited by
+ * the device MTU or the path MTU when path MTU discovery is enabled.
+ */
+#define IPV6_MTU 24
 
 /** Don't support IPv4 access */
 #define IPV6_V6ONLY 26
@@ -1287,6 +1322,46 @@ struct in6_pktinfo {
  */
 /** listen: The maximum backlog queue length */
 #define SOMAXCONN 128
+/** @} */
+
+/**
+ * @name Macros for checking special IPv6 addresses.
+ * @{
+ */
+/** Check unspecified IPv6 address. */
+#define IN6_IS_ADDR_UNSPECIFIED(addr) \
+	net_ipv6_addr_cmp(net_ipv6_unspecified_address(), addr)
+
+/** Check loopback IPv6 address. */
+#define IN6_IS_ADDR_LOOPBACK(addr) net_ipv6_is_addr_loopback(addr)
+
+/** Check IPv6 multicast address */
+#define IN6_IS_ADDR_MULTICAST(addr) net_ipv6_is_addr_mcast(addr)
+
+/** Check IPv6 link local address */
+#define IN6_IS_ADDR_LINKLOCAL(addr) net_ipv6_is_ll_addr(addr)
+
+/** Check IPv6 site local address */
+#define IN6_IS_ADDR_SITELOCAL(addr) net_ipv6_is_sl_addr(addr)
+
+/** Check IPv6 v4 mapped address */
+#define IN6_IS_ADDR_V4MAPPED(addr) net_ipv6_addr_is_v4_mapped(addr)
+
+/** Check IPv6 multicast global address */
+#define IN6_IS_ADDR_MC_GLOBAL(addr) net_ipv6_is_addr_mcast_global(addr)
+
+/** Check IPv6 multicast node local address */
+#define IN6_IS_ADDR_MC_NODELOCAL(addr) net_ipv6_is_addr_mcast_iface(addr)
+
+/** Check IPv6 multicast link local address */
+#define IN6_IS_ADDR_MC_LINKLOCAL(addr) net_ipv6_is_addr_mcast_link(addr)
+
+/** Check IPv6 multicast site local address */
+#define IN6_IS_ADDR_MC_SITELOCAL(addr) net_ipv6_is_addr_mcast_site(addr)
+
+/** Check IPv6 multicast organization local address */
+#define IN6_IS_ADDR_MC_ORGLOCAL(addr) net_ipv6_is_addr_mcast_org(addr)
+
 /** @} */
 
 /** @cond INTERNAL_HIDDEN */

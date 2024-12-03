@@ -248,6 +248,7 @@ fsl	Freescale Semiconductor
 ftdi	Future Technology Devices International Ltd.
 fujitsu	Fujitsu Ltd.
 futaba	Futaba Corporation
+fysetc	Shenzhen Fuyuansheng Electronic Technology Co., Ltd.
 gaisler	Gaisler
 galaxycore	Galaxycore, Inc.
 gardena	GARDENA GmbH
@@ -463,6 +464,7 @@ nintendo	Nintendo
 nlt	NLT Technologies, Ltd.
 nokia	Nokia
 nordic	Nordic Semiconductor
+norik	Norik Systems
 noritake	Noritake Co., Inc. Electronics Division
 novtech	NovTech, Inc.
 nuclei	Nuclei System Technology
@@ -722,6 +724,7 @@ vot	Vision Optical Technology Co., Ltd.
 vxt	VXT Ltd
 wand	Wandbord (Technexion)
 waveshare	Waveshare Electronics
+wch	WinChipHead
 wd	Western Digital Corp.
 we	Würth Elektronik GmbH.
 weact	WeAct Studio

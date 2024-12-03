@@ -13,7 +13,14 @@
 				<LPUART0_TXD_P0_3>;
 			drive-strength = "low";
 			slew-rate = "fast";
+			input-enable;
 		};
 	};
-
+	pinmux_dac0: pinmux_dac0 {
+		group0 {
+			pinmux = <DAC0_OUT_P2_2>;
+			drive-strength = "low";
+			slew-rate = "fast";
+		};
+	};
 };
