@@ -2505,6 +2505,8 @@ MODEM_CHAT_SCRIPT_CMDS_DEFINE(nordic_nrf91_slm_init_chat_script_cmds,
 			      MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
 			      MODEM_CHAT_SCRIPT_CMD_RESP("AT+CGMR", cgmr_match),
 			      MODEM_CHAT_SCRIPT_CMD_RESP("", ok_match),
+            MODEM_CHAT_SCRIPT_CMD_RESP("AT+CPSMS=1,,,\"00000001\",\"00000011\"", ok_match),
+            MODEM_CHAT_SCRIPT_CMD_RESP("AT+CEDRXS=2,4,\"0011\"", ok_match),
 			      MODEM_CHAT_SCRIPT_CMD_RESP("AT#XCMUX=1", ok_match));
 
 MODEM_CHAT_SCRIPT_DEFINE(nordic_nrf91_slm_init_chat_script, nordic_nrf91_slm_init_chat_script_cmds,

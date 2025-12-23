@@ -1,0 +1,28 @@
+# Quectel BG9x driver options
+
+# Copyright (c) 2020 Analog Life LLC
+# SPDX-License-Identifier: Apache-2.0
+
+config MODEM_NORDIC_NRF91
+	bool "Quectel modem driver"
+	select MODEM_CONTEXT
+	select MODEM_CMD_HANDLER
+	select MODEM_IFACE_UART
+	select MODEM_SOCKET
+	select NET_SOCKETS_OFFLOAD
+	help
+	  Choose this setting to enable quectel BG9x LTE-CatM1/NB-IoT modem
+	  driver.
+
+if MODEM_NORDIC_NRF91
+
+config MODEM_QUECTEL_BG9X_INIT_PRIORITY
+	int "quectel BG9X driver init priority"
+	default 80
+	help
+	  quectel BG9X device driver initialization priority.
+	  Do not mess with it unless you know what you are doing.
+	  Note that the priority needs to be lower than the net stack
+	  so that it can start before the networking sub-system.
+
+endif

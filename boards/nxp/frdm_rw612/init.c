@@ -43,6 +43,17 @@ static void frdm_rw612_pm_state_exit(enum pm_state state)
 }
 #endif
 
+static void use_slna_when_bt(bool enable)
+{
+    // uint32_t reg = APU0->BCA_LTE_CTRL;
+    // reg &= ~APU_BCA_LTE_CTRL_USE_SLNA_WHILE_BT_MASK;
+    // reg |= APU_BCA_LTE_CTRL_USE_SLNA_WHILE_BT(enable ? 1U : 0U);
+    // APU0->BCA_LTE_CTRL = APU_BCA_LTE_CTRL_USE_SLNA_WHILE_BT(1) | APU_BCA_LTE_CTRL_BCA_FORCE_ON_WHILE_BT(1);
+    // APU0->BLE2_CTRL = APU_BLE2_CTRL_BLE_MODE_EN(1);
+    // APU0->BLE_CTRL = APU_BLE_CTRL_BLE_MODE_EN(1);
+}
+
+
 void board_early_init_hook(void)
 {
 	frdm_rw612_power_init_config();
@@ -103,4 +114,5 @@ void board_early_init_hook(void)
 	/* Select Transmit I2S - Flexcomm 1 Data out to shared signal set 0 */
 	SYSCTL1->FCCTRLSEL[1] |= SYSCTL1_FCCTRLSEL_DATAOUTSEL(1);
 #endif /* CONFIG_I2S_TEST_SEPARATE_DEVICES */
+    use_slna_when_bt(true);
 }
